@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta name="viewport" content="width=device-width"> 
     <title>Geolocation</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
    
@@ -16,25 +17,25 @@
         }
           #submit-button {
             display: block;
-            margin: 30px auto;
-            padding: 25px 50px;
+            margin: 20px auto;
+            padding: 10px 20px;
             background: #4285F4;
             color: white;
             border: none;
             cursor: pointer;
-            font-size: 60px;
-            width: 450px; /* Adjust the width as needed */
+            font-size: 16px;
+            width: 150px; /* Adjust the width as needed */
             text-align: center;
         }
         #geolocation-button {
             background: white;
             border: none;
-            padding: 30px;
+            padding: 10px;
             cursor: pointer;
-			width: 80px;
-			height: 80px;
-			margin-top: 20px;
-			margin-right: 30px;
+			width: 40px;
+			height: 40px;
+			margin-top: 5px;
+			margin-right: 10px;
             
         }
 		
@@ -51,7 +52,7 @@
     
     <div id="map"></div>
 	<div id="submit-button">Submit</div>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh0Kb5qOr-LMrp9xCVEOsLN7g-Joee-Ks&libraries=marker"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvV0XIVB50c0jUdvXu0d3QUheaFCEwzHo&libraries=marker"></script>
     <script>
 	let map;
 let marker;
@@ -98,7 +99,8 @@ function initMap() {
 			map.setZoom(16);
         }, () => {
             handleLocationError(true, map.getCenter());
-        });
+        },
+		{maximumAge:2000, enableHighAccuracy: true});
     } else {
         handleLocationError(false, map.getCenter());
     }
@@ -118,7 +120,7 @@ function initMap() {
                 userCoordinates = pos;
                 placeMarker(new google.maps.LatLng(pos.lat, pos.lng));
                 map.setCenter(pos);
-				map.setZoom(20);
+				map.setZoom(16);
             });
         }
     });
