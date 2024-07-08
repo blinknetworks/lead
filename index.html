@@ -167,6 +167,10 @@ function updateCoordinates(id, coordinates) {
 		var data = {
 			gps: `${coordinates.lat},${coordinates.lng}`
 			//'city': "Dubai"
+			'additional_attributes' =>
+    {
+		 'coverage_status' => 'Submitted GPS'}
+			
 		};
 
 	 
