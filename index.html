@@ -167,7 +167,8 @@ function updateCoordinates(id, coordinates) {
 		var data = {
 			gps: `${coordinates.lat},${coordinates.lng}`,
 			city: "Dubai",
-			coverage_status: "Submitted GPS"
+			additional_attributes =>
+			{coverage_status: "Submitted GPS"}
 			
 		};
 
