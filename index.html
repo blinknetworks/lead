@@ -148,13 +148,13 @@
         </select>
     </div>
     <div class="form-group">
-        <input type="text" id="fullName" placeholder="Full Name...">
+        <input type="text" id="fullName" placeholder="Full Name..." required>
     </div>
     <div class="form-group">
-        <input type="tel" id="mobileNumber" placeholder="Mobile No: 07X XXXXXXX" pattern="07[0-9]{1}-[0-9]{7}">
+        <input type="tel" id="mobileNumber" placeholder="Mobile No: 07X XXXXXXX" pattern="07[0-9]{1}-[0-9]{7}" required>
     </div>
     <div class="form-group hidden" id="companyNameGroup">
-        <input type="text" id="companyName" placeholder="Company Name">
+        <input type="text" id="companyName" placeholder="Company Name" required>
     </div>
 	</div>
     <button class="btn" onclick="goToNextPage()">Next</button>
@@ -178,6 +178,11 @@
         const category = document.getElementById('serviceType').value;
         const companyName = document.getElementById('companyName').value;
 
+	if (!fullName || !mobileNumber ) {
+            alert('Please fill out all required fields.');
+            return;
+        }
+	
         const mobilePattern = /^07[0-9]{1}[0-9]{7}$/;
         if (!mobilePattern.test(mobileNumber)) {
             alert('Please enter a valid mobile number in the format: 07X XXXXXXX');
