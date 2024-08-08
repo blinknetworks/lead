@@ -263,7 +263,7 @@ function createLead(coordinates, location_id) {
 		
 	 
 		
-		var request = new XMLHttpRequest();
+/*		var request = new XMLHttpRequest();
 
 	request.open('POST',  `https://crm.blink.jo/api/2.0/admin/crm/leads`);
 
@@ -283,16 +283,36 @@ function createLead(coordinates, location_id) {
         }
 	};
 
-	request.send(JSON.stringify(data)); 
+	request.send(JSON.stringify(data)); */
 	
 	
-	var dataSms = {
+	fetch('https://crm.blink.jo/api/2.0/admin/crm/leads', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Basic ODY3N2Q1N2EwMjI4NGYyMzc5OTVkMGQ1Nzg5NDcxOGQ6NGMyMmNlMzA1NDBiNDQ1YjZlNGQyMmJjYTg0ZjRjZjM='
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => {
+            if (response.status === 201) {
+                console.log('Thank you, location updated');
+            } else {
+                console.log('Error updating coordinates');
+            }
+            return response.json();
+        })
+        .then(data => console.log(data))
+        .catch(error => console.error('Error:', error));
+		
+		
+/*		var dataSms = {
 			'sender': "NeoByBlink",
 			'mobile': "+962" + "0795822348",
 			'content': `Dear ${name}`
 		};
 	
-/*	var requestSms = new XMLHttpRequest();
+	var requestSms = new XMLHttpRequest();
 
 	requestSms.open('POST',  `https://api.releans.com/v2/message`);
 
