@@ -276,7 +276,7 @@ function createLead(coordinates, location_id) {
 		console.log('Headers:', this.getAllResponseHeaders());
 		console.log('Body:', this.responseText);
 	  }
-	  if (this.status === 202 ) {
+	  if (this.status === 201 ) {
             console.log('Thank you, location updated');
         } else {
             console.log('Error updating coordinates');
