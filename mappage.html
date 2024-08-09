@@ -115,7 +115,7 @@ function initMap() {
           alert(content)
         }); */
 		
-	$.ajax('https://blinkcloud.net/app.kml').done(function (xml) {
+	$.ajax('https://lead.blinkcloud.net/app.kml').done(function (xml) {
             const geojson = toGeoJSON.kml(xml);
 			console.log(geojson)
 			map.data.addGeoJson(geojson);
