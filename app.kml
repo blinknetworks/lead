@@ -546,16 +546,50 @@
 		<SimpleField type="string" name="FORCED_EQ"></SimpleField>
 		<SimpleField type="int" name="FUTURE_CBL"></SimpleField>
 	</Schema>
+	<StyleMap id="m_ylw-pushpin">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#s_ylw-pushpin</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#s_ylw-pushpin_hl</styleUrl>
+		</Pair>
+	</StyleMap>
 	<StyleMap id="msn_ylw-pushpin">
 		<Pair>
 			<key>normal</key>
-			<styleUrl>#sn_ylw-pushpin</styleUrl>
+			<styleUrl>#sn_ylw-pushpin0</styleUrl>
 		</Pair>
 		<Pair>
 			<key>highlight</key>
 			<styleUrl>#sh_ylw-pushpin</styleUrl>
 		</Pair>
 	</StyleMap>
+	<Style id="s_ylw-pushpin">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<PolyStyle>
+			<color>997f55ff</color>
+		</PolyStyle>
+	</Style>
+	<Style id="s_ylw-pushpin_hl">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<PolyStyle>
+			<color>997f55ff</color>
+		</PolyStyle>
+	</Style>
 	<Style id="sh_ylw-pushpin">
 		<IconStyle>
 			<scale>1.3</scale>
@@ -564,8 +598,6 @@
 			</Icon>
 			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
 		</IconStyle>
-		<BalloonStyle>
-		</BalloonStyle>
 		<LineStyle>
 			<color>ff0000ff</color>
 		</LineStyle>
@@ -573,7 +605,7 @@
 			<color>807f0000</color>
 		</PolyStyle>
 	</Style>
-	<Style id="sn_ylw-pushpin">
+	<Style id="sn_ylw-pushpin0">
 		<IconStyle>
 			<scale>1.1</scale>
 			<Icon>
@@ -581,8 +613,6 @@
 			</Icon>
 			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
 		</IconStyle>
-		<BalloonStyle>
-		</BalloonStyle>
 		<LineStyle>
 			<color>ff0000ff</color>
 		</LineStyle>
@@ -684,13 +714,13 @@
 			<Placemark>
 				<name>LLL Microwave</name>
 				<visibility>0</visibility>
-				<styleUrl>#stylemap_id3043</styleUrl>
+				<styleUrl>#stylemap_id30430</styleUrl>
 				<Polygon>
 					<tessellate>1</tessellate>
 					<outerBoundaryIs>
 						<LinearRing>
 							<coordinates>
-								36.0748307285146,31.69373137565034,0 36.02947086916684,31.74822360136798,0 35.83858819411292,31.72240886095242,0 35.80443801763211,31.62723568952535,0 36.0738398554693,31.61049994267996,0 36.0748307285146,31.69373137565034,0 
+								36.0748307285146,31.69373137565034,0 36.02947086916684,31.74822360136798,0 35.83858819411292,31.72240886095242,0 35.80443801763211,31.62723568952535,0 36.0738398554693,31.61049994267997,0 36.0748307285146,31.69373137565034,0 
 							</coordinates>
 						</LinearRing>
 					</outerBoundaryIs>
@@ -703,7 +733,7 @@
 			<Placemark>
 				<name>Microwave</name>
 				<visibility>0</visibility>
-				<styleUrl>#stylemap_id30430</styleUrl>
+				<styleUrl>#stylemap_id3043</styleUrl>
 				<Polygon>
 					<tessellate>1</tessellate>
 					<outerBoundaryIs>
@@ -4600,6 +4630,25 @@
 						</outerBoundaryIs>
 					</Polygon>
 				</MultiGeometry>
+			</Placemark>
+		</Folder>
+		<Folder>
+			<name>SK</name>
+			<visibility>0</visibility>
+			<Placemark>
+				<name>sk</name>
+				<visibility>0</visibility>
+				<styleUrl>#m_ylw-pushpin</styleUrl>
+				<Polygon>
+					<tessellate>1</tessellate>
+					<outerBoundaryIs>
+						<LinearRing>
+							<coordinates>
+								36.01711883619523,31.91528416877991,0 36.0212783783989,31.92248224370224,0 36.00943241089256,31.93019098295872,0 36.00160301953503,31.92538040000245,0 36.00682373001511,31.91785902049924,0 36.01711883619523,31.91528416877991,0 
+							</coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
 			</Placemark>
 		</Folder>
 	</Folder>
