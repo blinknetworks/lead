@@ -299,45 +299,48 @@ function createLead(coordinates, location_id, polygonName) {
             if (response.status === 201) {
                 console.log('Thank you, location updated');
 				
-				if (polygonName === 'Microwave') {
-                    if(category == "Person"){
-						window.location.href = 'https://www.blink.jo/mwvlead';
-					}else{
-						window.location.href = 'https://www.blink.jo/Bmwvlead';
-					}
-                } else if (polygonName === 'LLL Microwave') {
-                    if(category == "Person"){
-						window.location.href = 'https://www.blink.jo/llllead';
-					}else{
-						window.location.href = 'https://www.blink.jo/Bllllead';
-					}
-                } else if (polygonName === 'Fiber') {
-                    if(category == "Person"){
-						window.location.href = 'https://www.blink.jo/fiberlead';
-					}else{
-						window.location.href = 'https://www.blink.jo/Bfiberlead';
-					}
-		} else if (polygonName === 'sk') {
-                    if(category == "Person"){
-						window.location.href = 'https://www.blink.jo/sklead';
-					}else{
-						window.location.href = 'https://www.blink.jo/Bsklead';
-					}
-					
-                } else{
-					if(category == "Person"){
-						window.location.href = 'https://www.blink.jo/notcovered';
-					}else{
-						window.location.href = 'https://www.blink.jo/Bnotcovered';
-					}
-				}
-				
             } else {
                 console.log('Error updating coordinates');
             }
             return response.json();
         })
-        .then(data => console.log(data))
+        .then(data => { 
+		console.log(data);
+		var leadId = data.id;
+		if (polygonName === 'Microwave') {
+                    if(category == "Person"){
+						window.location.href = `https://www.blink.jo/mwvlead?id=${leadId}`;
+					}else{
+						window.location.href = `https://www.blink.jo/Bmwvlead?id=${leadId}`;
+					}
+                } else if (polygonName === 'LLL Microwave') {
+                    if(category == "Person"){
+						window.location.href = `https://www.blink.jo/llllead?id=${leadId}`;
+					}else{
+						window.location.href = `https://www.blink.jo/Bllllead?id=${leadId}`;
+					}
+                } else if (polygonName === 'Fiber') {
+                    if(category == "Person"){
+						window.location.href = `https://www.blink.jo/fiberlead?id=${leadId}`;
+					}else{
+						window.location.href = `https://www.blink.jo/Bfiberlead?id=${leadId}`;
+					}
+                } else if (polygonName === 'sk') {
+                    if(category == "Person"){
+						window.location.href = `https://www.blink.jo/sklead?id=${leadId}`;
+					}else{
+						window.location.href = `https://www.blink.jo/Bsklead?id=${leadId}`;
+					}
+					
+                } else{
+					if(category == "Person"){
+						window.location.href = `https://www.blink.jo/notcovered?id=${leadId}`;
+					}else{
+						window.location.href = `https://www.blink.jo/Bnotcovered?id=${leadId}`;
+					}
+				}
+		     
+	})
         .catch(error => console.error('Error:', error));
 		
 		
