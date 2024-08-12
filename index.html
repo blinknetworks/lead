@@ -179,6 +179,9 @@
         const category = document.getElementById('serviceType').value;
         const companyName = document.getElementById('companyName').value;
 
+	const urlParams = new URLSearchParams(window.location.search);
+        const servicePicked = urlParams.get('service_picked');
+
 	if (!fullName || !mobileNumber ) {
             alert('Please fill out all required fields.');
             return;
@@ -197,6 +200,10 @@
         if (category === 'Company') {
             url += '&companyName=' + encodeURIComponent(companyName);
         }
+
+	if(servicePicked){
+			url += '&service_picked=' + encodeURIComponent(servicePicked);
+	}
 
         
         window.location.href = url;
