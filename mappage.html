@@ -234,6 +234,7 @@ function createLead(coordinates, location_id, polygonName) {
         const name = urlParams.get('name');
         const companyName = urlParams.get('companyName');
         const phone = urlParams.get('phone');
+		const servicePicked = urlParams.get('service_picked');
 		var data = {
 			gps: `${coordinates.lat},${coordinates.lng}`,
 				//'city': "Dubai",
@@ -246,7 +247,8 @@ function createLead(coordinates, location_id, polygonName) {
 				  contactperson: '',
 				  additional_attributes: {
 					'company_name_1': '',
-					"client_type": category
+					"client_type": category,
+					"service_picked": servicePicked
 				}
 				  
 		};
