@@ -309,36 +309,36 @@ function createLead(coordinates, location_id, polygonName) {
         .then(data => { 
 		console.log(data);
 		var leadId = data.id;
-		if (polygonName === 'Microwave') {
+		if (polygonName === 'haritna') {
                     if(category == "Person"){
-						window.location.href = `https://www.blink.jo/mwvlead?id=${leadId}`;
+						window.location.href = `https://www.blink.jo/haritnalead?id=${leadId}`;
 					}else{
-						window.location.href = `https://www.blink.jo/Bmwvlead?id=${leadId}`;
+						window.location.href = `https://www.blink.jo/haritnalead?id=${leadId}`;
 					}
-                } else if (polygonName === 'LLL Microwave') {
+                } else if (polygonName === 'airfiber') {
                     if(category == "Person"){
-						window.location.href = `https://www.blink.jo/llllead?id=${leadId}`;
+						window.location.href = `https://www.blink.jo/airfiberlead?id=${leadId}`;
 					}else{
-						window.location.href = `https://www.blink.jo/Bllllead?id=${leadId}`;
+						window.location.href = `https://www.blink.jo/airfiberlead?id=${leadId}`;
 					}
                 } else if (polygonName === 'Fiber') {
                     if(category == "Person"){
 						window.location.href = `https://www.blink.jo/fiberlead?id=${leadId}`;
 					}else{
-						window.location.href = `https://www.blink.jo/Bfiberlead?id=${leadId}`;
+						window.location.href = `https://www.blink.jo/fiberlead?id=${leadId}`;
 					}
                 } else if (polygonName === 'sk') {
                     if(category == "Person"){
 						window.location.href = `https://www.blink.jo/sklead?id=${leadId}`;
 					}else{
-						window.location.href = `https://www.blink.jo/Bsklead?id=${leadId}`;
+						window.location.href = `https://www.blink.jo/sklead?id=${leadId}`;
 					}
 					
                 } else{
 					if(category == "Person"){
 						window.location.href = `https://www.blink.jo/notcovered?id=${leadId}`;
 					}else{
-						window.location.href = `https://www.blink.jo/Bnotcovered?id=${leadId}`;
+						window.location.href = `https://www.blink.jo/notcovered?id=${leadId}`;
 					}
 				}
 		     
@@ -407,13 +407,13 @@ function checkMarkerInPolygons(coordinates) {
 			var locationId;
             if (insidePolygon) {
                
-                if (polygonName === 'Microwave') {
+                if (polygonName === 'haritna') {
 					locationId = 22;
 					createLead(coordinates, locationId, polygonName );
 					
                     
                 } 
-				else if (polygonName === 'LLL Microwave') {
+				else if (polygonName === 'airfiber') {
 					locationId = 23;
 					createLead(coordinates, locationId, polygonName  );
 				
