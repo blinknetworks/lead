@@ -44,11 +44,7 @@
 			margin-right: 10px;
             
         }
-	.img {
-            		width: 40px;
-			height: 20px;
-			margin-top: 5px;
-	    /*	.topdiv{
+		.topdiv{
 			background-color: #FFFFFF;
 			text-align: center;
 			margin-bottom: -10px;
@@ -66,7 +62,7 @@
 			
 			padding-bottom: 10px;
             }
-		*/
+		
 		@media only screen and (max-width: 768px) {
 			#submit-button {
 				width: 30%;
@@ -76,8 +72,12 @@
     </style>
 </head>
 <body>
-    <div id="map"></div>
+    <div class="topdiv">
     <img src="https://lead.blink.jo/Blink-Networks_logo_edited.jpg" alt="Neo by Blink">
+    <h1>Check Coverage Tool</h1>
+	</div>
+    
+    <div id="map"></div>
 	<div id="submit-button">Next</div>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh0Kb5qOr-LMrp9xCVEOsLN7g-Joee-Ks&libraries=marker"></script>
     <script>
