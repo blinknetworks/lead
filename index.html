@@ -43,15 +43,15 @@
             direction: ltr;
         }
         .language-selector select {
-    font-size: 0.5em; /* Increase font size by 50% */
-    padding: 8px; /* Increase padding to make the selector bigger */
-    border: 1px solid #ccc; /* Optional: Style the border */
-    border-radius: 4px; /* Optional: Rounded corners */
-    background-color: #fff; /* Optional: Background color */
-    appearance: none; /* Remove default styling */
-    width: auto; /* Ensure width adjusts to content */
-    max-width: 100%; /* Prevent overflow */
-}
+            font-size: 0.5em; /* Increase font size by 50% */
+            padding: 8px; /* Increase padding to make the selector bigger */
+            border: 1px solid #ccc; /* Optional: Style the border */
+            border-radius: 4px; /* Optional: Rounded corners */
+            background-color: #fff; /* Optional: Background color */
+            appearance: none; /* Remove default styling */
+            width: auto; /* Ensure width adjusts to content */
+            max-width: 100%; /* Prevent overflow */
+        }
         .container h1 {
             font-size: 26px;
             color: #000; /* Changed text to black */
@@ -241,6 +241,16 @@
             serviceType.options[1].text = "Business";
         }
     }
+
+    // Check for 'lang=ar' parameter in the URL on page load
+    window.onload = function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const langParam = urlParams.get('lang');
+        if (langParam === 'ar') {
+            document.getElementById('languageSelector').value = 'ar';
+            toggleLanguage();  // Trigger the language change to Arabic
+        }
+    };
 </script>
 
 </body>
