@@ -15,7 +15,9 @@
         .container {
             background-color: white;
             text-align: center;
-            width: 100%;
+            width: 90%;
+            max-width: 900px; /* Contains the page width on desktop */
+            margin: 0 auto; /* Center the page */
             height: 100%;
         }
         .container img {
@@ -35,7 +37,7 @@
         }
         .container h1 {
             font-size: 24px;
-            color: #fff;
+            color: #000; /* Changed text to black */
             margin-bottom: 10px;
         }
         .container p {
@@ -95,6 +97,9 @@
                 font-size: 14px;
             }
         }
+        .hidden {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -121,14 +126,14 @@
                 <option value="Company">Business</option>
             </select>
         </div>
+        <div class="form-group hidden" id="companyNameGroup"> <!-- Hidden by default -->
+            <input type="text" id="companyName" placeholder="Company Name" required>
+        </div>
         <div class="form-group">
             <input type="text" id="fullName" placeholder="Full Name..." required>
         </div>
         <div class="form-group">
             <input type="tel" id="mobileNumber" placeholder="Mobile No: 07X XXXXXXX" pattern="07[0-9]{1}-[0-9]{7}" required>
-        </div>
-        <div class="form-group hidden" id="companyNameGroup">
-            <input type="text" id="companyName" placeholder="Company Name" required>
         </div>
     </div>
     <button class="btn" onclick="goToNextPage()">Next</button>
