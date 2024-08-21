@@ -2,63 +2,72 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Check Coverage Tool</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
+            background-color: white;
             margin: 0;
             padding: 0;
-          
             height: 100vh;
         }
         .container {
             background-color: white;
-          /*  padding: 20px; */
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
-            width: 100%;
-			height: 100%;
+            width: 90%;
+            max-width: 900px; /* Contains the page width on desktop */
+            margin: 0 auto; /* Center the page */
+            height: 100%;
         }
         .container img {
-            width: 30%;
-			margin-top: 20px;
+            width: 150px;
+            margin-top: 10px;
+            margin-left: 0; /* Remove any margin if set */
+            margin-right: auto; /* Push the logo to the left */
         }
+        .topdiv {
+            background-color: #FFFFFF;
+            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+            align-items: start;
+            direction: ltr;
+        }
+        .language-selector {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            margin-left: auto; /* Remove any margin if set */
+            margin-right: 0; /* Push the logo to the left */
+            font-size: 2em; /* 50% larger */
+            direction: ltr;
+        }
+        .language-selector select {
+    font-size: 0.5em; /* Increase font size by 50% */
+    padding: 8px; /* Increase padding to make the selector bigger */
+    border: 1px solid #ccc; /* Optional: Style the border */
+    border-radius: 4px; /* Optional: Rounded corners */
+    background-color: #fff; /* Optional: Background color */
+    appearance: none; /* Remove default styling */
+    width: auto; /* Ensure width adjusts to content */
+    max-width: 100%; /* Prevent overflow */
+}
         .container h1 {
-            font-size: 24px;
-			color: #fff;
-			/*padding: 20px;*/
-            /*margin-bottom: 10px;*/
-			padding-bottom: 10px;
+            font-size: 26px;
+            color: #000; /* Changed text to black */
+            margin-bottom: 10px;
         }
         .container p {
             font-size: 14px;
             color: #777;
-           /* margin: 5px 0;*/
         }
-		
-		.topdiv{
-			background-color: #000;
-		}
-		
-		.bottomdiv{
-			padding: 40px;
-			text-align: justify;
-			
-		}
-		
+        .bottomdiv {
+            padding: 10px;
+            text-align: justify;
+        }
         .form-group {
             margin-bottom: 15px;
-			
-			text-align: center;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
+            text-align: center;
         }
         .form-group input, .form-group select {
             width: 100%;
@@ -66,103 +75,88 @@
             border: 1px solid #ccc;
             border-radius: 4px;
             box-sizing: border-box;
-			max-width: 100%;
-		height: auto;
-			line-height: normal; 
-		font-size: 18px;
+            font-size: 18px;
         }
-		
-	.form-group select {
-	    -webkit-appearance: none;
-	    -moz-appearance: none;
-	    appearance: none;
-		font-size: 18px;
-		 background: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16"><path d="M7.247 11.14l-4.796-5.481C2.055 5.304 2.522 4.5 3.3 4.5h9.4c.777 0 1.245.803.847 1.158l-4.796 5.481a1 1 0 0 1-1.504 0z"/></svg>') no-repeat right 10px center;
-	background-size: 16px 16px;
-	}
-		
-
-.form-group input::placeholder, .form-group select::placeholder {
-    font-size: 18px; /* Increase placeholder font size */
-}
-		
+        .form-group select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            font-size: 18px;
+        }
+        .form-group input::placeholder, .form-group select::placeholder {
+            font-size: 18px;
+        }
         .form-group input:focus, .form-group select:focus {
             border-color: #007bff;
         }
-		
-		
-        .form-group.hidden {
-            display: none;
-        }
         .btn {
-            background-color: #ff5e57;
+            background-color: #000;
             color: white;
             padding: 10px 20px;
             border: none;
             border-radius: 4px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 18px;
             width: 50%;
         }
         .btn:hover {
-            background-color: #e04b4a;
+            background-color: #A9A9A9;
         }
-
-        /* Mobile responsiveness */
         @media (max-width: 600px) {
-            .container {
-               /* padding: 15px; */
-                width: 100%;
-            }
             .container h1 {
-                font-size: 16px;
-            }
-            .container p {
-                font-size: 14px;
+                font-size: 18px;
             }
             .form-group input, .form-group select {
-                padding: 15px;
+                padding: 16px;
             }
             .btn {
                 padding: 8px 16px;
-                font-size: 14px;
+                font-size: 18px;
             }
+        }
+        .hidden {
+            display: none;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-	<div class="topdiv">
-    <img src="https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/neobyblink-jsejsj/assets/kzqloxxhev5g/neo_red_and_white.png" alt="Neo by Blink">
-    <h1>Check Coverage Tool</h1>
-	</div>
-	
-	<div class="bottomdiv">
-    <p>Blink Networks is the leading ISP provider in Jordan</p>
-    <p>Blink Networks is the leading ISP provider in Jordan, with over 15 years of service we help companies in Jordan with seamless internet connectivity</p>
-    
-    <div class="form-group">
-        <select id="serviceType" onchange="toggleCompanyName()">
-            <option value="Person">Home</option>
-            <option value="Company">Business</option>
+    <div class="topdiv">
+        <img src="https://lead.blink.jo/Blink-Networks_logo_edited.jpg" alt="Blink">
+        <div class="language-selector">
+        <select id="languageSelector" onchange="toggleLanguage()">
+            <option value="en">English</option>
+            <option value="ar">العربية</option>
         </select>
     </div>
-    <div class="form-group">
-        <input type="text" id="fullName" placeholder="Full Name..." required>
+</div>
+    <h1 id="page-title">Check Coverage Tool</h1>
+
+    <div class="bottomdiv">
+        <p id="introText1">Blink Networks is the leading ISP provider in Jordan</p>
+        <p id="introText2">At Blink Networks, we are keen to provide our services in all areas via fiber or microwave, and we work to reach all areas that suffer from weak internet services to provide high internet speeds using advanced technology. Please enter your information and you will be contacted as soon as possible by the sales team.</p>
+
+        <div class="form-group">
+            <select id="serviceType" onchange="toggleCompanyName()">
+                <option value="Person">Home</option>
+                <option value="Company">Business</option>
+            </select>
+        </div>
+        <div class="form-group hidden" id="companyNameGroup"> <!-- Hidden by default -->
+            <input type="text" id="companyName" placeholder="Company Name" required>
+        </div>
+        <div class="form-group">
+            <input type="text" id="fullName" placeholder="Full Name..." required>
+        </div>
+        <div class="form-group">
+            <input type="tel" id="mobileNumber" placeholder="Mobile No: 07X XXXXXXX" pattern="07[0-9]{1}-[0-9]{7}" required>
+        </div>
     </div>
-    <div class="form-group">
-        <input type="tel" id="mobileNumber" placeholder="Mobile No: 07X XXXXXXX" pattern="07[0-9]{1}-[0-9]{7}" required>
-    </div>
-    <div class="form-group hidden" id="companyNameGroup">
-        <input type="text" id="companyName" placeholder="Company Name" required>
-    </div>
-	</div>
     <button class="btn" onclick="goToNextPage()">Next</button>
 </div>
 
 <script>
-
     function toggleCompanyName() {
         const serviceType = document.getElementById('serviceType').value;
         const companyNameGroup = document.getElementById('companyNameGroup');
@@ -174,19 +168,20 @@
     }
 
     function goToNextPage() {
-         const fullName = document.getElementById('fullName').value;
+        const fullName = document.getElementById('fullName').value;
         const mobileNumber = document.getElementById('mobileNumber').value;
         const category = document.getElementById('serviceType').value;
         const companyName = document.getElementById('companyName').value;
 
-	const urlParams = new URLSearchParams(window.location.search);
+        const urlParams = new URLSearchParams(window.location.search);
         const servicePicked = urlParams.get('service_picked');
+        const language = document.getElementById('languageSelector').value;
 
-	if (!fullName || !mobileNumber ) {
+        if (!fullName || !mobileNumber ) {
             alert('Please fill out all required fields.');
             return;
         }
-	
+
         const mobilePattern = /^07[0-9]{1}[0-9]{7}$/;
         if (!mobilePattern.test(mobileNumber)) {
             alert('Please enter a valid mobile number in the format: 07X XXXXXXX');
@@ -201,12 +196,50 @@
             url += '&companyName=' + encodeURIComponent(companyName);
         }
 
-	if(servicePicked){
-			url += '&service_picked=' + encodeURIComponent(servicePicked);
-	}
+        if (servicePicked) {
+            url += '&service_picked=' + encodeURIComponent(servicePicked);
+        }
 
-        
+        if (language === 'ar') {
+            url += '&lang=ar';
+        }
+
         window.location.href = url;
+    }
+
+    function toggleLanguage() {
+        const language = document.getElementById('languageSelector').value;
+        const serviceType = document.getElementById('serviceType');
+
+        if (language === 'ar') {
+            document.documentElement.setAttribute('lang', 'ar');
+            document.body.style.direction = 'rtl';
+
+            document.getElementById('page-title').innerText = "أداة التحقق من التغطية";
+            document.getElementById('introText1').innerText = "نحرص في شركة بلينك نتوركس تقديم خدماتنا في جميع المناطق عن طريق الفايبر أو المايكرويف, و نعمل للوصول الى جميع المناطق اللتي تعاني من ضعف في خدمات الإنترنت لتقديم سرعات انترنت عالية بإستخدام تكنولوجيا متقدمة.";
+            document.getElementById('introText2').innerText = "الرجاء إدخال معلوماتك و سيتم التواصل معك بأقرب وقت ممكن من قبل فريق المبيعات.";
+            document.getElementById('fullName').placeholder = "الاسم الكامل...";
+            document.getElementById('mobileNumber').placeholder = "07X XXXXXXX رقم الهاتف";
+            document.getElementById('companyName').placeholder = "اسم الشركة";
+            document.querySelector('.btn').innerText = "التالي";
+
+            serviceType.options[0].text = "منزل";
+            serviceType.options[1].text = "شركة";
+        } else {
+            document.documentElement.setAttribute('lang', 'en');
+            document.body.style.direction = 'ltr';
+
+            document.getElementById('page-title').innerText = "Check Coverage Tool";
+            document.getElementById('introText1').innerText = "Blink Networks is the leading ISP provider in Jordan";
+            document.getElementById('introText2').innerText = "At Blink Networks, we are keen to provide our services in all areas via fiber or microwave, and we work to reach all areas that suffer from weak internet services to provide high internet speeds using advanced technology. Please enter your information and you will be contacted as soon as possible by the sales team.";
+            document.getElementById('fullName').placeholder = "Full Name...";
+            document.getElementById('mobileNumber').placeholder = "Mobile No: 07X XXXXXXX";
+            document.getElementById('companyName').placeholder = "Company Name";
+            document.querySelector('.btn').innerText = "Next";
+
+            serviceType.options[0].text = "Home";
+            serviceType.options[1].text = "Business";
+        }
     }
 </script>
 
