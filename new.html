@@ -26,20 +26,25 @@
         }
 
         .container img {
-            width: 40%;
-            margin-top: 20px;
+            width: 150px; /* Fixed width for logo */
+            position: absolute;
+            top: 20px;
+            left: 20px;
         }
 
         .container h1 {
             font-size: 6vw;
             color: #fff;
             padding-bottom: 10px;
-            margin-top: 20px;
+            margin-top: 0;
         }
 
         .topdiv {
             background-color: #000;
             padding: 20px;
+            padding-top: 15px;
+            padding-bottom: 15px; /* Reduced height by 30% */
+            position: relative;
         }
 
         .bottomdiv {
@@ -93,6 +98,12 @@
             background-color: #e04b4a;
         }
 
+        /* Adjustments for Language Selector */
+        #languageSelector {
+            font-size: 150%; /* Increase size by 50% */
+            margin-top: 15px; /* Add space between it and the black strip */
+        }
+
         /* Media Queries for Desktop */
         @media (min-width: 768px) {
             .container {
@@ -101,10 +112,6 @@
 
             .container h1 {
                 font-size: 3vw;
-            }
-
-            .container img {
-                width: 20%;
             }
 
             .btn {
@@ -122,6 +129,16 @@
             .container h1 {
                 font-size: 2vw;
             }
+        }
+
+        /* Arabic-Specific Styles */
+        [lang="ar"] .form-group select {
+            background-position: left 10px center; /* Move dropdown arrow to the left */
+        }
+
+        [lang="ar"] .container img {
+            left: unset;
+            right: 20px;
         }
     </style>
 </head>
@@ -213,17 +230,22 @@
 
     function changeLanguage() {
         const language = document.getElementById('languageSelector').value;
+        const serviceType = document.getElementById('serviceType');
+
         if (language === 'ar') {
             document.documentElement.setAttribute('lang', 'ar');
             document.body.style.direction = 'rtl';
 
             document.getElementById('page-title').innerText = "أداة التحقق من التغطية";
             document.getElementById('introText1').innerText = "Blink Networks هو المزود الرائد لخدمات الإنترنت في الأردن";
-            document.getElementById('introText2').innerText = "بخبرة أكثر من 15 عامًا، نوفر الاتصال السلس بالإنترنت للشركات في الأردن";
+            document.getElementById('introText2').innerText = "بخبرة أكثر من 15 عامًا، نوفر الاتصال السلس بالإنترنت للشركات في الأردن.";
             document.getElementById('fullName').placeholder = "الاسم الكامل...";
             document.getElementById('mobileNumber').placeholder = "رقم الهاتف: 07X XXXXXXX";
             document.getElementById('companyName').placeholder = "اسم الشركة";
             document.querySelector('.btn').innerText = "التالي";
+
+            serviceType.options[0].text = "المنزل";
+            serviceType.options[1].text = "الأعمال";
         } else {
             document.documentElement.setAttribute('lang', 'en');
             document.body.style.direction = 'ltr';
@@ -235,6 +257,9 @@
             document.getElementById('mobileNumber').placeholder = "Mobile No: 07X XXXXXXX";
             document.getElementById('companyName').placeholder = "Company Name";
             document.querySelector('.btn').innerText = "Next";
+
+            serviceType.options[0].text = "Home";
+            serviceType.options[1].text = "Business";
         }
     }
 </script>
