@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Check Coverage Tool</title>
     <style>
         body {
@@ -11,77 +11,65 @@
             margin: 0;
             padding: 0;
             height: 100vh;
-            box-sizing: border-box;
         }
-
         .container {
             background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
-            width: 90vw;
-            max-width: 800px;
-            margin: auto;
-            padding: 20px;
+            width: 100%;
+            height: 100%;
         }
-
         .container img {
-            width: 150px; /* Fixed width for logo */
-            position: absolute;
-            top: 20px;
-            left: 20px;
+            width: 150px;
         }
-
-        .container h1 {
-            font-size: 6vw;
-            color: #fff;
-            padding-bottom: 10px;
-            margin-top: 0;
-        }
-
         .topdiv {
             background-color: #000;
-            padding: 20px;
-            padding-top: 15px;
-            padding-bottom: 15px; /* Reduced height by 30% */
-            position: relative;
+            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
-
+        .language-selector {
+            margin-top: 10px;
+            margin-bottom: 20px;
+            font-size: 1.5em; /* 50% larger */
+        }
+        .container h1 {
+            font-size: 24px;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+        .container p {
+            font-size: 14px;
+            color: #777;
+        }
         .bottomdiv {
-            padding: 20px;
-            text-align: left;
+            padding: 40px;
+            text-align: justify;
         }
-
         .form-group {
             margin-bottom: 15px;
-            text-align: left;
+            text-align: center;
         }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-
         .form-group input, .form-group select {
             width: 100%;
-            padding: 15px;
+            padding: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
-            font-size: 16px;
             box-sizing: border-box;
+            font-size: 18px;
         }
-
         .form-group select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
             appearance: none;
-            background: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16"><path d="M7.247 11.14l-4.796-5.481C2.055 5.304 2.522 4.5 3.3 4.5h9.4c.777 0 1.245.803.847 1.158l-4.796 5.481a1 1 0 0 1-1.504 0z"/></svg>') no-repeat right 10px center;
-            background-size: 16px 16px;
+            font-size: 18px;
         }
-
-        .form-group.hidden {
-            display: none;
+        .form-group input::placeholder, .form-group select::placeholder {
+            font-size: 18px;
         }
-
+        .form-group input:focus, .form-group select:focus {
+            border-color: #007bff;
+        }
         .btn {
             background-color: #ff5e57;
             color: white;
@@ -89,56 +77,23 @@
             border: none;
             border-radius: 4px;
             cursor: pointer;
-            font-size: 18px;
-            width: 100%;
-            margin-top: 15px;
+            font-size: 16px;
+            width: 50%;
         }
-
         .btn:hover {
             background-color: #e04b4a;
         }
-
-        /* Adjustments for Language Selector */
-        #languageSelector {
-            font-size: 150%; /* Increase size by 50% */
-            margin-top: 15px; /* Add space between it and the black strip */
-        }
-
-        /* Media Queries for Desktop */
-        @media (min-width: 768px) {
-            .container {
-                width: 60vw;
-            }
-
+        @media (max-width: 600px) {
             .container h1 {
-                font-size: 3vw;
+                font-size: 16px;
             }
-
+            .form-group input, .form-group select {
+                padding: 15px;
+            }
             .btn {
-                width: 50%;
-                margin-top: 20px;
+                padding: 8px 16px;
+                font-size: 14px;
             }
-        }
-
-        /* Media Queries for Larger Desktops */
-        @media (min-width: 1200px) {
-            .container {
-                width: 40vw;
-            }
-
-            .container h1 {
-                font-size: 2vw;
-            }
-        }
-
-        /* Arabic-Specific Styles */
-        [lang="ar"] .form-group select {
-            background-position: left 10px center; /* Move dropdown arrow to the left */
-        }
-
-        [lang="ar"] .container img {
-            left: unset;
-            right: 20px;
         }
     </style>
 </head>
@@ -147,17 +102,14 @@
 <div class="container">
     <div class="topdiv">
         <img src="https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/neobyblink-jsejsj/assets/kzqloxxhev5g/neo_red_and_white.png" alt="Neo by Blink">
-        <h1 id="page-title">Check Coverage Tool</h1>
     </div>
-
-    <div>
-        <!-- Language Selector -->
-        <label for="languageSelector">Language / اللغة:</label>
-        <select id="languageSelector" onchange="changeLanguage()">
+    <div class="language-selector">
+        <select id="languageSelector" onchange="toggleLanguage()">
             <option value="en">English</option>
             <option value="ar">العربية</option>
         </select>
     </div>
+    <h1 id="page-title">Check Coverage Tool</h1>
 
     <div class="bottomdiv">
         <p id="introText1">Blink Networks is the leading ISP provider in Jordan</p>
@@ -201,8 +153,9 @@
 
         const urlParams = new URLSearchParams(window.location.search);
         const servicePicked = urlParams.get('service_picked');
+        const language = document.getElementById('languageSelector').value;
 
-        if (!fullName || !mobileNumber) {
+        if (!fullName || !mobileNumber ) {
             alert('Please fill out all required fields.');
             return;
         }
@@ -214,8 +167,8 @@
         }
 
         let url = 'https://lead.blink.jo/mappage.html?name=' + encodeURIComponent(fullName) +
-            '&phone=' + encodeURIComponent(mobileNumber) +
-            '&category=' + encodeURIComponent(category);
+                  '&phone=' + encodeURIComponent(mobileNumber) +
+                  '&category=' + encodeURIComponent(category);
 
         if (category === 'Company') {
             url += '&companyName=' + encodeURIComponent(companyName);
@@ -225,10 +178,14 @@
             url += '&service_picked=' + encodeURIComponent(servicePicked);
         }
 
+        if (language === 'ar') {
+            url += '&lang=ar';
+        }
+
         window.location.href = url;
     }
 
-    function changeLanguage() {
+    function toggleLanguage() {
         const language = document.getElementById('languageSelector').value;
         const serviceType = document.getElementById('serviceType');
 
@@ -237,8 +194,8 @@
             document.body.style.direction = 'rtl';
 
             document.getElementById('page-title').innerText = "أداة التحقق من التغطية";
-            document.getElementById('introText1').innerText = "Blink Networks هو المزود الرائد لخدمات الإنترنت في الأردن";
-            document.getElementById('introText2').innerText = "بخبرة أكثر من 15 عامًا، نوفر الاتصال السلس بالإنترنت للشركات في الأردن.";
+            document.getElementById('introText1').innerText = "Blink Networks هي المزود الرائد لخدمات الإنترنت في الأردن";
+            document.getElementById('introText2').innerText = "Blink Networks هي المزود الرائد لخدمات الإنترنت في الأردن، مع أكثر من 15 عامًا من الخدمة، نساعد الشركات في الأردن على الاتصال بالإنترنت بسلاسة.";
             document.getElementById('fullName').placeholder = "الاسم الكامل...";
             document.getElementById('mobileNumber').placeholder = "رقم الهاتف: 07X XXXXXXX";
             document.getElementById('companyName').placeholder = "اسم الشركة";
