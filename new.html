@@ -21,8 +21,10 @@
             height: 100%;
         }
         .container img {
-            width: 150px;
-            margin: 10px auto 0;
+           width: 150px;
+            margin-top: 10px;
+            margin-left: 0; 
+            margin-right: auto; 
         }
         .topdiv {
             background-color: #FFFFFF;
@@ -30,10 +32,13 @@
             display: flex;
             justify-content: center;
             align-items: flex-start;
+            direction: ltr;
+
         }
         .language-selector {
             margin: 10px 0 0 auto;
             font-size: 2em;
+            direction: ltr;
         }
         .language-selector select {
             font-size: 0.5em;
@@ -52,10 +57,12 @@
             display: flex;
             justify-content: center;
             margin: 20px 0;
+            direction: ltr;
         }
         table {
             border-collapse: collapse;
             margin: 0 auto;
+            direction: ltr;
         }
         .container p {
             font-size: 14px;
@@ -132,7 +139,7 @@
     </div>
 
     <p id="introText1">Blink Networks is the leading ISP provider in Jordan</p>
-    <p id="introText2">Please enter your information, and you will be contacted by the sales team as soon as possible.</p>
+    <p id="introText2">Through Fiber or Microwave we work to reach all areas that suffer from weak services to provide high internet speeds using advanced technology. Please enter your information and you will be contacted as soon as possible by the sales team.</p>
 
     <div class="form-group">
         <select id="serviceType" onchange="toggleCompanyName()">
@@ -197,8 +204,8 @@
             document.body.style.direction = 'rtl';
 
             document.getElementById('page-title').innerText = "أداة التحقق من التغطية";
-            document.getElementById('introText1').innerText = "نحرص في شركة بلينك نتوركس تقديم خدماتنا...";
-            document.getElementById('introText2').innerText = "الرجاء إدخال معلوماتك...";
+            document.getElementById('introText1').innerText = "نحرص في شركة بلينك نتوركس تقديم خدماتنا في جميع المناطق عن طريق الفايبر أو المايكرويف, و نعمل للوصول الى جميع المناطق اللتي تعاني من ضعف في خدمات الإنترنت لتقديم سرعات انترنت عالية بإستخدام تكنولوجيا متقدمة.";
+            document.getElementById('introText2').innerText = "الرجاء إدخال معلوماتك و سيتم التواصل معك بأقرب وقت ممكن من قبل فريق المبيعات.";
             document.getElementById('fullName').placeholder = "الاسم الكامل...";
             document.getElementById('mobileNumber').placeholder = "07X XXXXXXX رقم الهاتف";
             document.getElementById('companyName').placeholder = "اسم الشركة";
