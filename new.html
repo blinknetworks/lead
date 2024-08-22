@@ -11,63 +11,71 @@
             margin: 0;
             padding: 0;
             height: 100vh;
-            font-weight: bold;
         }
         .container {
             background-color: white;
             text-align: center;
             width: 90%;
-            max-width: 900px;
-            margin: 0 auto;
+            max-width: 900px; /* Contains the page width on desktop */
+            margin: 0 auto; /* Center the page */
             height: 100%;
         }
         .container img {
-           width: 150px;
+            width: 150px;
             margin-top: 10px;
-            margin-left: 0; 
-            margin-right: auto; 
+            margin-left: 0; /* Remove any margin if set */
+            margin-right: auto; /* Push the logo to the left */
         }
         .topdiv {
             background-color: #FFFFFF;
             padding: 10px 0;
             display: flex;
             justify-content: center;
-            align-items: flex-start;
+            align-items: start;
             direction: ltr;
-
-        }
-        .language-selector {
-            margin: 10px 0 0 auto;
-            font-size: 2em;
-            direction: ltr;
-        }
-        .language-selector select {
-            font-size: 0.5em;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            background-color: #fff;
-            appearance: none;
-        }
-        .container h1 {
-            font-size: 26px;
-            color: #000;
-            margin-bottom: 10px;
         }
         .table-wrapper {
             display: flex;
             justify-content: center;
             margin: 20px 0;
             direction: ltr;
+
         }
         table {
             border-collapse: collapse;
             margin: 0 auto;
             direction: ltr;
+
+        }
+        .language-selector {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            margin-left: auto; /* Remove any margin if set */
+            margin-right: 0; /* Push the logo to the left */
+            font-size: 2em; /* 50% larger */
+            direction: ltr;
+        }
+        .language-selector select {
+            font-size: 0.5em; /* Increase font size by 50% */
+            padding: 8px; /* Increase padding to make the selector bigger */
+            border: 1px solid #ccc; /* Optional: Style the border */
+            border-radius: 4px; /* Optional: Rounded corners */
+            background-color: #fff; /* Optional: Background color */
+            appearance: none; /* Remove default styling */
+            width: auto; /* Ensure width adjusts to content */
+            max-width: 100%; /* Prevent overflow */
+        }
+        .container h1 {
+            font-size: 26px;
+            color: #000; /* Changed text to black */
+            margin-bottom: 10px;
         }
         .container p {
             font-size: 14px;
             color: #777;
+        }
+        .bottomdiv {
+            padding: 10px;
             text-align: justify;
         }
         .form-group {
@@ -82,8 +90,17 @@
             box-sizing: border-box;
             font-size: 18px;
         }
+        .form-group select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            font-size: 18px;
+        }
         .form-group input::placeholder, .form-group select::placeholder {
             font-size: 18px;
+        }
+        .form-group input:focus, .form-group select:focus {
+            border-color: #007bff;
         }
         .btn {
             background-color: #000;
@@ -102,6 +119,9 @@
             .container h1 {
                 font-size: 18px;
             }
+            .form-group input, .form-group select {
+                padding: 16px;
+            }
             .btn {
                 padding: 8px 16px;
                 font-size: 18px;
@@ -118,19 +138,18 @@
     <div class="topdiv">
         <img src="https://lead.blink.jo/Blink-Networks_logo_edited.jpg" alt="Blink">
         <div class="language-selector">
-            <select id="languageSelector" onchange="toggleLanguage()">
-                <option value="en">English</option>
-                <option value="ar">العربية</option>
-            </select>
-        </div>
+        <select id="languageSelector" onchange="toggleLanguage()">
+            <option value="en">English</option>
+            <option value="ar">العربية</option>
+        </select>
     </div>
+</div>
     <h1 id="page-title">Check Coverage Tool</h1>
-
-    <div class="table-wrapper">
+ <div class="table-wrapper">
         <table>
             <tbody>
                 <tr>
-                <td><span style="color:hsl(0,99%,69%);font-family:Arial, Helvetica, sans-serif;font-size:18px;"><i><strong>neo</strong></i></span><span style="color:#212121;font-family:Arial, Helvetica, sans-serif;font-size:18px;"><strong>Fiber</strong><i><strong> &nbsp;</strong></i></span></td>
+                    <td><span style="color:hsl(0,99%,69%);font-family:Arial, Helvetica, sans-serif;font-size:18px;"><i><strong>neo</strong></i></span><span style="color:#212121;font-family:Arial, Helvetica, sans-serif;font-size:18px;"><strong>Fiber</strong><i><strong> &nbsp;</strong></i></span></td>
                 <td><span style="color:#3D9BE9;font-family:Arial, Helvetica, sans-serif;font-size:18px;"><i><strong>air</strong></i></span><span style="color:#212121;font-family:Arial, Helvetica, sans-serif;font-size:18px;"><strong>Fiber</strong><i><strong>&nbsp;</strong></i></span></td>
                 <td><span style="color:hsl(0,99%,69%);font-family:Arial, Helvetica, sans-serif;font-size:18px;"><i><strong>neo</strong></i></span><span style="color:#212121;font-family:Arial, Helvetica, sans-serif;font-size:18px;"><strong>Haritna</strong><i><strong> &nbsp;</strong></i></span></td>
                 <td><span style="color:#6B90BF;font-family:Arial, Helvetica, sans-serif;font-size:18px;"><i><strong>corp</strong></i></span><span style="color:#212121;font-family:Arial, Helvetica, sans-serif;font-size:18px;"><strong>Net</strong></span></td>
@@ -138,33 +157,38 @@
             </tbody>
         </table>
     </div>
+    <div class="bottomdiv">
+        <p id="introText1">Blink Networks is the leading ISP provider in Jordan</p>
+        <p id="introText2">Through Fiber or Microwave we work to reach all areas that suffer from weak services to provide high internet speeds using advanced technology. Please enter your information and you will be contacted as soon as possible by the sales team.</p>
 
-    <p id="introText1">Blink Networks is the leading ISP provider in Jordan</p>
-    <p id="introText2">Through Fiber or Microwave we work to reach all areas that suffer from weak services to provide high internet speeds using advanced technology. Please enter your information and you will be contacted as soon as possible by the sales team.</strong></p>
-
-    <div class="form-group">
-        <select id="serviceType" onchange="toggleCompanyName()">
-            <option value="Person">Home</option>
-            <option value="Company">Business</option>
-        </select>
+        <div class="form-group">
+            <select id="serviceType" onchange="toggleCompanyName()">
+                <option value="Person">Home</option>
+                <option value="Company">Business</option>
+            </select>
+        </div>
+        <div class="form-group hidden" id="companyNameGroup"> <!-- Hidden by default -->
+            <input type="text" id="companyName" placeholder="Company Name" required>
+        </div>
+        <div class="form-group">
+            <input type="text" id="fullName" placeholder="Full Name..." required>
+        </div>
+        <div class="form-group">
+            <input type="tel" id="mobileNumber" placeholder="Mobile No: 07X XXXXXXX" pattern="07[0-9]{1}-[0-9]{7}" required>
+        </div>
     </div>
-    <div class="form-group hidden" id="companyNameGroup">
-        <input type="text" id="companyName" placeholder="Company Name">
-    </div>
-    <div class="form-group">
-        <input type="text" id="fullName" placeholder="Full Name" required>
-    </div>
-    <div class="form-group">
-        <input type="tel" id="mobileNumber" placeholder="Mobile No: 07X XXXXXXX" pattern="07[0-9]{1}-[0-9]{7}" required>
-    </div>
-
     <button class="btn" onclick="goToNextPage()">Next</button>
 </div>
 
 <script>
     function toggleCompanyName() {
         const serviceType = document.getElementById('serviceType').value;
-        document.getElementById('companyNameGroup').classList.toggle('hidden', serviceType !== 'Company');
+        const companyNameGroup = document.getElementById('companyNameGroup');
+        if (serviceType === 'Company') {
+            companyNameGroup.classList.remove('hidden');
+        } else {
+            companyNameGroup.classList.add('hidden');
+        }
     }
 
     function goToNextPage() {
@@ -172,9 +196,12 @@
         const mobileNumber = document.getElementById('mobileNumber').value;
         const category = document.getElementById('serviceType').value;
         const companyName = document.getElementById('companyName').value;
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const servicePicked = urlParams.get('service_picked');
         const language = document.getElementById('languageSelector').value;
 
-        if (!fullName || !mobileNumber) {
+        if (!fullName || !mobileNumber ) {
             alert('Please fill out all required fields.');
             return;
         }
@@ -185,13 +212,21 @@
             return;
         }
 
-        let url = `https://lead.blink.jo/mappage.html?name=${encodeURIComponent(fullName)}&phone=${encodeURIComponent(mobileNumber)}&category=${encodeURIComponent(category)}`;
-        if (category === 'Company') url += `&companyName=${encodeURIComponent(companyName)}`;
+        let url = 'https://lead.blink.jo/mappage.html?name=' + encodeURIComponent(fullName) +
+                  '&phone=' + encodeURIComponent(mobileNumber) +
+                  '&category=' + encodeURIComponent(category);
 
-        const urlParams = new URLSearchParams(window.location.search);
-        const servicePicked = urlParams.get('service_picked');
-        if (servicePicked) url += `&service_picked=${encodeURIComponent(servicePicked)}`;
-        if (language === 'ar') url += '&lang=ar';
+        if (category === 'Company') {
+            url += '&companyName=' + encodeURIComponent(companyName);
+        }
+
+        if (servicePicked) {
+            url += '&service_picked=' + encodeURIComponent(servicePicked);
+        }
+
+        if (language === 'ar') {
+            url += '&lang=ar';
+        }
 
         window.location.href = url;
     }
@@ -231,12 +266,13 @@
         }
     }
 
+    // Check for 'lang=ar' parameter in the URL on page load
     window.onload = function() {
         const urlParams = new URLSearchParams(window.location.search);
         const langParam = urlParams.get('lang');
         if (langParam === 'ar') {
             document.getElementById('languageSelector').value = 'ar';
-            toggleLanguage();
+            toggleLanguage();  // Trigger the language change to Arabic
         }
     };
 </script>
