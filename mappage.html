@@ -239,6 +239,7 @@ function createLead(coordinates, location_id, polygonName) {
         const name = urlParams.get('name');
         const companyName = urlParams.get('companyName');
         const phone = urlParams.get('phone');
+		const lang = urlParams.get('lang');
 		const servicePicked = urlParams.get('service_picked');
 		var data = {
 			gps: `${coordinates.lat},${coordinates.lng}`,
@@ -271,27 +272,7 @@ function createLead(coordinates, location_id, polygonName) {
 		
 	 
 		
-/*		var request = new XMLHttpRequest();
 
-	request.open('POST',  `https://crm.blink.jo/api/2.0/admin/crm/leads`);
-
-	request.setRequestHeader('Content-Type', 'application/json');
-	request.setRequestHeader('Authorization', 'Basic ODY3N2Q1N2EwMjI4NGYyMzc5OTVkMGQ1Nzg5NDcxOGQ6NGMyMmNlMzA1NDBiNDQ1YjZlNGQyMmJjYTg0ZjRjZjM=');
-
-	request.onreadystatechange = function () {
-	  if (this.readyState === 4) {
-		console.log('Status:', this.status);
-		console.log('Headers:', this.getAllResponseHeaders());
-		console.log('Body:', this.responseText);
-	  }
-	  if (this.status === 201 ) {
-            console.log('Thank you, location updated');
-        } else {
-            console.log('Error updating coordinates');
-        }
-	};
-
-	request.send(JSON.stringify(data)); */
 	
 	
 	fetch('https://crm.blink.jo/api/2.0/admin/crm/leads', {
@@ -315,69 +296,45 @@ function createLead(coordinates, location_id, polygonName) {
 		console.log(data);
 		var leadId = data.id;
 		if (polygonName === 'haritna') {
-                    if(category == "Person"){
-						window.location.href = `https://www.blink.jo/haritnalead?id=${leadId}`;
-					}else{
-						window.location.href = `https://www.blink.jo/haritnalead?id=${leadId}`;
-					}
+                    if(lang == 'ar'){
+			    window.location.href = `https://www.blink.jo/haritnalead?id=${leadId}&lang=${lang}`;
+		    }else {
+			    window.location.href = `https://www.blink.jo/haritnalead?id=${leadId}`;
+		    }
+						
+					
                 } else if (polygonName === 'airfiber') {
-                    if(category == "Person"){
-						window.location.href = `https://www.blink.jo/airfiberlead?id=${leadId}`;
-					}else{
-						window.location.href = `https://www.blink.jo/airfiberlead?id=${leadId}`;
+                    if(lang == 'ar'){
+						window.location.href = `https://www.blink.jo/airfiberlead?id=${leadId}&lang=${lang}`;
+					}else {
+			    			window.location.href = `https://www.blink.jo/airfiberlead?id=${leadId}`;
 					}
                 } else if (polygonName === 'Fiber') {
-                    if(category == "Person"){
-						window.location.href = `https://www.blink.jo/fiberlead?id=${leadId}`;
-					}else{
+                   	if(lang == 'ar'){
+						window.location.href = `https://www.blink.jo/fiberlead?id=${leadId}&lang=${lang}`;
+					}else {
 						window.location.href = `https://www.blink.jo/fiberlead?id=${leadId}`;
 					}
                 } else if (polygonName === 'sk') {
-                    if(category == "Person"){
-						window.location.href = `https://www.blink.jo/sklead?id=${leadId}`;
-					}else{
+                 	if(lang == 'ar'){
+						window.location.href = `https://www.blink.jo/sklead?id=${leadId}&lang=${lang}`;
+					}else {
 						window.location.href = `https://www.blink.jo/sklead?id=${leadId}`;
 					}
 					
                 } else{
-					if(category == "Person"){
-						window.location.href = `https://www.blink.jo/notcovered?id=${leadId}`;
-					}else{
+			if(lang == 'ar'){		
+						window.location.href = `https://www.blink.jo/notcovered?id=${leadId}&lang=${lang}`;
+					}else {
 						window.location.href = `https://www.blink.jo/notcovered?id=${leadId}`;
 					}
-				}
+		}
 		     
 	})
         .catch(error => console.error('Error:', error));
 		
 		
-/*		var dataSms = {
-			'sender': "NeoByBlink",
-			'mobile': "+962" + "0795822348",
-			'content': `Dear ${name}`
-		};
-	
-	var requestSms = new XMLHttpRequest();
 
-	requestSms.open('POST',  `https://api.releans.com/v2/message`);
-
-	requestSms.setRequestHeader('Content-Type', 'application/json');
-	requestSms.setRequestHeader('Authorization', 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJpZCI6ImEzZDUwNzc0LTMyNzQtNGRiYS04NmQ3LWU4YjU4OTFiZDkzOCIsImlhdCI6MTcyMzExODA0OSwiaXNzIjoxMTg1Nn0.aQ7m8kIAfjKdopGL3eTdPgCyf2tjKrztaRq9FbXijnw');
-
-	requestSms.onreadystatechange = function () {
-	  if (this.readyState === 4) {
-		console.log('Status:', this.status);
-		console.log('Headers:', this.getAllResponseHeaders());
-		console.log('Body:', this.responseText);
-	  }
-	  if (this.status === 202 ) {
-            console.log('Thank you, SMS sent');
-        } else {
-            console.log('Error updating coordinates');
-        }
-	};
-
-	requestSms.send(JSON.stringify(dataSms)); */
 	
 	//alert('Thank you, location updated');
 
