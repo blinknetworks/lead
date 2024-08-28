@@ -159,6 +159,15 @@
 		<SimpleField type="string" name="STATUS"></SimpleField>
 		<SimpleField type="string" name="Covered"></SimpleField>
 	</Schema>
+	<Schema name="Distribution_Clusters" id="Distribution_Clusters">
+		<SimpleField type="int" name="AGG_ID"></SimpleField>
+		<SimpleField type="string" name="LOCKED"></SimpleField>
+		<SimpleField type="int" name="HOMECOUNT"></SimpleField>
+		<SimpleField type="int" name="FIBERS"></SimpleField>
+		<SimpleField type="int" name="SIZE"></SimpleField>
+		<SimpleField type="string" name="FORCED_EQ"></SimpleField>
+		<SimpleField type="int" name="FUTURE_CBL"></SimpleField>
+	</Schema>
 	<Schema name="FEEDER_CABLE" id="FEEDER_CABLE00">
 		<SimpleField type="int" name="AGG_ID"></SimpleField>
 		<SimpleField type="string" name="LOCKED"></SimpleField>
@@ -573,6 +582,16 @@
 		<SimpleField type="string" name="FORCED_EQ"></SimpleField>
 		<SimpleField type="int" name="FUTURE_CBL"></SimpleField>
 	</Schema>
+	<StyleMap id="m_ylw-pushpin63">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#s_ylw-pushpin63</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#s_ylw-pushpin_hl63</styleUrl>
+		</Pair>
+	</StyleMap>
 	<StyleMap id="msn_ylw-pushpin">
 		<Pair>
 			<key>normal</key>
@@ -580,13 +599,13 @@
 		</Pair>
 		<Pair>
 			<key>highlight</key>
-			<styleUrl>#sh_ylw-pushpin</styleUrl>
+			<styleUrl>#sh_ylw-pushpin1</styleUrl>
 		</Pair>
 	</StyleMap>
 	<StyleMap id="msn_ylw-pushpin0">
 		<Pair>
 			<key>normal</key>
-			<styleUrl>#sn_ylw-pushpin0</styleUrl>
+			<styleUrl>#sn_ylw-pushpin</styleUrl>
 		</Pair>
 		<Pair>
 			<key>highlight</key>
@@ -596,13 +615,43 @@
 	<StyleMap id="msn_ylw-pushpin1">
 		<Pair>
 			<key>normal</key>
-			<styleUrl>#sn_ylw-pushpin</styleUrl>
+			<styleUrl>#sn_ylw-pushpin0</styleUrl>
 		</Pair>
 		<Pair>
 			<key>highlight</key>
-			<styleUrl>#sh_ylw-pushpin1</styleUrl>
+			<styleUrl>#sh_ylw-pushpin</styleUrl>
 		</Pair>
 	</StyleMap>
+	<Style id="s_ylw-pushpin63">
+		<IconStyle>
+			<scale>0.7</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/placemark_circle.png</href>
+			</Icon>
+		</IconStyle>
+		<LineStyle>
+			<color>ff0000ff</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>997f0000</color>
+		</PolyStyle>
+	</Style>
+	<Style id="s_ylw-pushpin_hl63">
+		<IconStyle>
+			<scale>0.827276</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/placemark_circle_highlight.png</href>
+			</Icon>
+		</IconStyle>
+		<LineStyle>
+			<color>ff0000ff</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>997f0000</color>
+		</PolyStyle>
+	</Style>
 	<Style id="sh_ylw-pushpin">
 		<IconStyle>
 			<scale>1.3</scale>
@@ -611,8 +660,6 @@
 			</Icon>
 			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
 		</IconStyle>
-		<BalloonStyle>
-		</BalloonStyle>
 		<LineStyle>
 			<color>ff0000ff</color>
 		</LineStyle>
@@ -628,13 +675,8 @@
 			</Icon>
 			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
 		</IconStyle>
-		<BalloonStyle>
-		</BalloonStyle>
-		<LineStyle>
-			<color>ff0000ff</color>
-		</LineStyle>
 		<PolyStyle>
-			<color>807f0000</color>
+			<color>997f55ff</color>
 		</PolyStyle>
 	</Style>
 	<Style id="sh_ylw-pushpin1">
@@ -645,10 +687,11 @@
 			</Icon>
 			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
 		</IconStyle>
-		<BalloonStyle>
-		</BalloonStyle>
+		<LineStyle>
+			<color>ff0000ff</color>
+		</LineStyle>
 		<PolyStyle>
-			<color>997f55ff</color>
+			<color>807f0000</color>
 		</PolyStyle>
 	</Style>
 	<Style id="sn_ylw-pushpin">
@@ -659,8 +702,6 @@
 			</Icon>
 			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
 		</IconStyle>
-		<BalloonStyle>
-		</BalloonStyle>
 		<PolyStyle>
 			<color>997f55ff</color>
 		</PolyStyle>
@@ -673,8 +714,6 @@
 			</Icon>
 			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
 		</IconStyle>
-		<BalloonStyle>
-		</BalloonStyle>
 		<LineStyle>
 			<color>ff0000ff</color>
 		</LineStyle>
@@ -690,8 +729,6 @@
 			</Icon>
 			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
 		</IconStyle>
-		<BalloonStyle>
-		</BalloonStyle>
 		<LineStyle>
 			<color>ff0000ff</color>
 		</LineStyle>
@@ -769,11 +806,10 @@
 	</StyleMap>
 	<Folder>
 		<name>app</name>
-		<open>1</open>
 		<Folder>
-			<name>airfiber</name>
+			<name>skyfiber</name>
 			<Placemark>
-				<name>airfiber</name>
+				<name>skyfiber</name>
 				<styleUrl>#stylemap_id10</styleUrl>
 				<Polygon>
 					<tessellate>1</tessellate>
@@ -809,7 +845,7 @@
 			<name>SK</name>
 			<Placemark>
 				<name>sk</name>
-				<styleUrl>#msn_ylw-pushpin1</styleUrl>
+				<styleUrl>#msn_ylw-pushpin0</styleUrl>
 				<Polygon>
 					<tessellate>1</tessellate>
 					<gx:drawOrder>1</gx:drawOrder>
@@ -832,6 +868,103 @@
 					<maxSnippetLines>2</maxSnippetLines>
 				</ListStyle>
 			</Style>
+			<Placemark>
+				<name>Fiber</name>
+				<styleUrl>#m_ylw-pushpin63</styleUrl>
+				<ExtendedData>
+					<SchemaData schemaUrl="#Distribution_Clusters">
+						<SimpleData name="AGG_ID">210</SimpleData>
+						<SimpleData name="LOCKED">T</SimpleData>
+						<SimpleData name="HOMECOUNT">144</SimpleData>
+						<SimpleData name="FIBERS">137</SimpleData>
+						<SimpleData name="SIZE">137</SimpleData>
+					</SchemaData>
+				</ExtendedData>
+				<MultiGeometry>
+					<Polygon>
+						<outerBoundaryIs>
+							<LinearRing>
+								<coordinates>
+									35.78870937680076,31.9202470531433,0 35.7869042995515,31.9199162206252,0 35.7855195962205,31.9182324035122,0 35.7865094588134,31.9172100527381,0 35.7869189406738,31.916875191964,0 35.7876033641106,31.916616184061,0 35.7883114497739,31.9161016462257,0 35.7909162999439,31.9165651065733,0 35.78870937680076,31.9202470531433,0 
+								</coordinates>
+							</LinearRing>
+						</outerBoundaryIs>
+					</Polygon>
+				</MultiGeometry>
+			</Placemark>
+			<Placemark>
+				<name>Fiber</name>
+				<styleUrl>#m_ylw-pushpin63</styleUrl>
+				<ExtendedData>
+					<SchemaData schemaUrl="#Distribution_Clusters">
+						<SimpleData name="AGG_ID">155</SimpleData>
+						<SimpleData name="LOCKED">T</SimpleData>
+						<SimpleData name="HOMECOUNT">87</SimpleData>
+						<SimpleData name="FIBERS">87</SimpleData>
+						<SimpleData name="SIZE">87</SimpleData>
+					</SchemaData>
+				</ExtendedData>
+				<MultiGeometry>
+					<Polygon>
+						<outerBoundaryIs>
+							<LinearRing>
+								<coordinates>
+									35.7743331234051,31.9190782151869,0 35.7755309525339,31.9207051415294,0 35.7792015753086,31.9197668201084,0 35.7858717578799,31.9200613677691,0 35.7859599014723,31.9192766499207,0 35.7851884716881,31.917764539725,0 35.7823788508997,31.9173614568932,0 35.782388212408,31.9171585872112,0 35.7828313236555,31.9168561481047,0 35.7828909164136,31.91592421090681,0 35.7818885076246,31.9147196664551,0 35.779649525202,31.9143330590691,0 35.7774347433326,31.9141260111637,0 35.7770103509868,31.9133708230347,0 35.7765207803512,31.9136467494809,0 35.7765877557479,31.9143118039675,0 35.775683360307,31.9144066200506,0 35.7758980225036,31.9149795220065,0 35.774907581953,31.9155785376747,0 35.7748303872868,31.9161113267688,0 35.7752500625055,31.9161444446484,0 35.7754383540033,31.9167131823424,0 35.7761142938511,31.9173085179218,0 35.7753283235269,31.9181307592382,0 35.7743331234051,31.9190782151869,0 
+								</coordinates>
+							</LinearRing>
+						</outerBoundaryIs>
+					</Polygon>
+				</MultiGeometry>
+			</Placemark>
+			<Placemark>
+				<name>Fiber</name>
+				<styleUrl>#m_ylw-pushpin63</styleUrl>
+				<ExtendedData>
+					<SchemaData schemaUrl="#Distribution_Clusters">
+						<SimpleData name="AGG_ID">165</SimpleData>
+						<SimpleData name="LOCKED">T</SimpleData>
+						<SimpleData name="HOMECOUNT">107</SimpleData>
+						<SimpleData name="FIBERS">107</SimpleData>
+						<SimpleData name="SIZE">107</SimpleData>
+					</SchemaData>
+				</ExtendedData>
+				<MultiGeometry>
+					<Polygon>
+						<outerBoundaryIs>
+							<LinearRing>
+								<coordinates>
+									35.7769460653017,31.9093885516347,0 35.7682856950379,31.9142690304365,0 35.7676999567101,31.9173391983634,0 35.7717069207819,31.9184180401771,0 35.7753839120983,31.9170897893811,0 35.7753655394468,31.9167292567193,0 35.7751794825469,31.9163572346715,0 35.7746034274171,31.9161542242624,0 35.7747092451215,31.915844910928,0 35.7750939471824,31.9153088172119,0 35.7757119585436,31.915044354328,0 35.7753520768699,31.9142510649724,0 35.7760756187766,31.9137394739372,0 35.7767658190184,31.9130579550565,0 35.7773714516189,31.9133769591061,0 35.7779000302603,31.9136980444193,0 35.778756181714,31.9137260229015,0 35.7829319381559,31.9131783692495,0 35.7820529193762,31.9103227487246,0 35.7801066885774,31.9084010280022,0 35.7769460653017,31.9093885516347,0 
+								</coordinates>
+							</LinearRing>
+						</outerBoundaryIs>
+					</Polygon>
+				</MultiGeometry>
+			</Placemark>
+			<Placemark>
+				<name>Fiber</name>
+				<styleUrl>#m_ylw-pushpin63</styleUrl>
+				<ExtendedData>
+					<SchemaData schemaUrl="#Distribution_Clusters">
+						<SimpleData name="AGG_ID">207</SimpleData>
+						<SimpleData name="LOCKED">T</SimpleData>
+						<SimpleData name="HOMECOUNT">134</SimpleData>
+						<SimpleData name="FIBERS">130</SimpleData>
+						<SimpleData name="SIZE">130</SimpleData>
+						<SimpleData name="FUTURE_CBL">0</SimpleData>
+					</SchemaData>
+				</ExtendedData>
+				<MultiGeometry>
+					<Polygon>
+						<outerBoundaryIs>
+							<LinearRing>
+								<coordinates>
+									35.7862153824815,31.9101488239146,0 35.7841522956229,31.9103559194498,0 35.784791054046,31.9126537836142,0 35.7849156086424,31.9138521064363,0 35.7850963059396,31.9149077030991,0 35.7829434763214,31.9165965206407,0 35.7830905975696,31.9172451874088,0 35.7841565109589,31.9174147427967,0 35.7857007119934,31.917776352329,0 35.7866354207382,31.9169803605777,0 35.7883713701808,31.915918166081,0 35.7890213848111,31.915753310434,0 35.790967481939,31.9156448425003,0 35.7919587974081,31.9139036630514,0 35.7919147491565,31.9122337216027,0 35.7919909389277,31.9093455667033,0 35.791468013553,31.9075681383281,0 35.7900859837395,31.9075343797736,0 35.7865158625259,31.9098849501563,0 35.7862153824815,31.9101488239146,0 
+								</coordinates>
+							</LinearRing>
+						</outerBoundaryIs>
+					</Polygon>
+				</MultiGeometry>
+			</Placemark>
 			<Placemark id="Polygon 1">
 				<name>Fiber</name>
 				<LookAt>
@@ -1058,7 +1191,7 @@
 			</Placemark>
 			<Placemark id="Polygon 0">
 				<name>Fiber</name>
-				<styleUrl>#msn_ylw-pushpin0</styleUrl>
+				<styleUrl>#msn_ylw-pushpin1</styleUrl>
 				<ExtendedData>
 					<SchemaData schemaUrl="#Feeder_Polygons">
 					</SchemaData>
