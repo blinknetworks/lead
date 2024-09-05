@@ -256,9 +256,6 @@ function initMap() {
         const id = urlParams.get('id');
         //updateCoordinates(id, userCoordinates);
 		checkMarkerInPolygons(userCoordinates);
-	   setTimeout(() => {
-        submitButton.disabled = false;
-    }, 5000); // Adjust timeout duration as necessary
     });
 }
 
