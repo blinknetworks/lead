@@ -250,10 +250,15 @@ function initMap() {
     });
 
    document.getElementById('submit-button').addEventListener('click', () => {
-        const urlParams = new URLSearchParams(window.location.search);
+        const submitButton = document.getElementById('submit-button');
+    	submitButton.disabled = true;
+	const urlParams = new URLSearchParams(window.location.search);
         const id = urlParams.get('id');
         //updateCoordinates(id, userCoordinates);
 		checkMarkerInPolygons(userCoordinates);
+	   setTimeout(() => {
+        submitButton.disabled = false;
+    }, 5000); // Adjust timeout duration as necessary
     });
 }
 
