@@ -250,8 +250,6 @@ function initMap() {
     });
 
    document.getElementById('submit-button').addEventListener('click', () => {
-        const submitButton = document.getElementById('submit-button');
-    	submitButton.disabled = true;
 	const urlParams = new URLSearchParams(window.location.search);
         const id = urlParams.get('id');
         //updateCoordinates(id, userCoordinates);
