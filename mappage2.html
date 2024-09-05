@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width"> 
+    <title>Geolocation</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/togeojson/0.16.0/togeojson.js" integrity="sha512-zbCSvezmUbiVidNvMav+PRxM3r51/wQOLuWQnLHHNg2FsbwU4W6fEs0kFYxJOiFEqqE14I6KguU4mrqFIaagyA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	
+    <style>
+		#map {
+            height: 80%;
+            width: 100%;
+        }
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+			font-family: Arial, sans-serif;
+        }
+          #submit-button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background: #4285F4;
+			background-color: #ff5e57;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            width: 150px;
+            text-align: center;
+        }
+        #geolocation-button {
+            background: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+			width: 40px;
+			height: 40px;
+			margin-top: 5px;
+			margin-right: 10px;
+        }
+		.topdiv {
+			background-color: #FFFFFF;
+            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+            align-items: start;
+            direction: ltr;
+		}
+		
+		.topdiv img {
+             width: 150px;
+            margin-top: 10px;
+            margin-left: 20px;
+            margin-right: auto;
+        }
+		
+		.topdiv h1 {
+            font-size: 16px;
+			color: #000;
+			padding-bottom: 10px;
+        }
+		
+		@media only screen and (max-width: 768px) {
+			#submit-button {
+				width: 30%;
+			}
+		}
+    </style>
+</head>
+<body>
+    <div class="topdiv">
+        <img src="https://lead.blink.jo/Blink-Networks_logo_edited.jpg" alt="Neo by Blink">
+	</div>
+    
+    <div id="map"></div>
+	<div id="submit-button">Next</div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh0Kb5qOr-LMrp9xCVEOsLN7g-Joee-Ks&libraries=marker"></script>
+    <script>
+	let map;
+let marker;
+let userCoordinates = {};
+var nearMeLocArr; 
+let geoJsonLayer;
+let polygons = [];
+
+function initMap() {
+    map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 31.944357630809794 , lng: 35.909803997628174},
+        zoom: 10,
+		mapId: "925fa0737eb2bce9",
+	    clickableIcons: false
+    });
+
+	const locationButton = document.createElement("button");
+    locationButton.id = "geolocation-button";
+    locationButton.innerHTML = '<i class="fa-solid fa-location-crosshairs fa-xl"></i>';
+    locationButton.classList.add("custom-map-control-button");
+    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(locationButton);
+	
+	const nextbtn = document.getElementById("submit-button");
+	map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(nextbtn);
+
+	$.ajax('https://lead.blink.jo/app.kml').done(function (xml) {
+        const geojson = toGeoJSON.kml(xml);
+		addGeoJsonToMap(geojson);
+	});
+
+	function addGeoJsonToMap(geoJsonData) {
+        geoJsonData.features.forEach(function(feature) {
+            if (feature.geometry.type === 'Polygon') {
+                const coordinates = feature.geometry.coordinates[0].map(coord => {
+                    return { lat: coord[1], lng: coord[0] };
+                });
+                const polygon = new google.maps.Polygon({
+                    paths: coordinates,
+                    fillColor: 'blue',
+			        fillOpacity: 0.2,
+			        strokeWeight: 1,
+                    map: map
+                });
+
+                polygon.name = feature.properties.name;
+                polygons.push(polygon);
+
+                google.maps.event.addListener(polygon, 'click', function(event) {
+                    placeMarker(event.latLng);
+                });
+            }
+        });
+    }
+
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(position => {
+            const pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            };
+
+            userCoordinates = pos;
+
+            marker = new google.maps.marker.AdvancedMarkerElement({
+                position: pos,
+                map: map,
+                gmpDraggable: true
+            });
+			
+			marker.addListener('dragend', function(event) {
+                userCoordinates = {
+                    lat: event.latLng.lat(),
+                    lng: event.latLng.lng()
+                };
+            });
+
+            map.setCenter(pos);
+			map.setZoom(16);
+        }, () => {
+            handleLocationError(true, map.getCenter());
+        },
+		{maximumAge:2000, enableHighAccuracy: true});
+    } else {
+        handleLocationError(false, map.getCenter());
+    }
+
+    map.addListener('click', (event) => {
+        placeMarker(event.latLng);
+    });
+
+    locationButton.addEventListener('click', () => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(position => {
+                const pos = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+
+                userCoordinates = pos;
+                placeMarker(new google.maps.LatLng(pos.lat, pos.lng));
+                map.setCenter(pos);
+				map.setZoom(16);
+            });
+        }
+    });
+
+    document.getElementById('submit-button').addEventListener('click', () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get('id');
+        
+        // Disable the button to prevent multiple submissions
+        disableButton();
+
+        checkMarkerInPolygons(userCoordinates);
+    });
+}
+
+function placeMarker(location) {
+    if (marker) {
+        marker.position = location;
+    } else {
+        marker = new google.maps.marker.AdvancedMarkerElement({
+            position: location,
+            map: map,
+            gmpDraggable: true
+        });
+		
+		marker.addListener('dragend', function(event) {
+            userCoordinates = {
+                lat: event.latLng.lat(),
+                lng: event.latLng.lng()
+            };
+        });
+    }
+    userCoordinates = {
+        lat: location.lat(),
+        lng: location.lng()
+    };
+}
+
+function handleLocationError(browserHasGeolocation, pos) {
+    console.log(browserHasGeolocation
+        ? 'Error: The Geolocation service failed.'
+        : 'Error: Your browser doesn\'t support geolocation.');
+}
+
+function createLead(coordinates, location_id, polygonName) {
+	if(Object.keys(coordinates).length > 0){
+		const urlParams = new URLSearchParams(window.location.search);
+        const category = urlParams.get('category');
+        const name = urlParams.get('name');
+        const companyName = urlParams.get('companyName');
+        const phone = urlParams.get('phone');
+		const lang = urlParams.get('lang');
+		const servicePicked = urlParams.get('service_picked');
+		var data = {
+			gps: `${coordinates.lat},${coordinates.lng}`,
+			'status': 'active',
+			'partner_id': 1,
+			'location_id': location_id,
+			'name': '',
+			'phone': phone,
+			'category': category,
+			contactperson: '',
+			additional_attributes: {
+				'company_name_1': '',
+				"client_type": category,
+				"service_picked": servicePicked
+			}
+		};
+		
+		if (category === 'Person') {
+            data.name = name;
+        } else if (category === 'Company') {
+            data.name = name;
+			data.additional_attributes.company_name_1 = companyName;
+        }
+		
+		fetch('https://crm.blink.jo/api/2.0/admin/crm/leads', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Basic ODY3N2Q1N2EwMjI4NGYyMzc5OTVkMGQ1Nzg5NDcxOGQ6NGMyMmNlMzA1NDBiNDQ1YjZlNGQyMmJjYTg0ZjRjZjM='
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => {
+			if(response.status === 201){
+				return response.json();
+			}
+        })
+		.then(data => {
+			var leadId = data.id;
+			let redirectUrl = getRedirectUrl(polygonName, leadId, lang);
+			window.location.href = redirectUrl;
+		});
+	}
+	else {
+		alert("Coordinates not found");
+	}
+}
+
+function checkMarkerInPolygons(coordinates){
+	if(polygons.length > 0 && Object.keys(coordinates).length > 0) {
+		for (let i = 0; i < polygons.length; i++) {
+            const polygon = polygons[i];
+            const contains = google.maps.geometry.poly.containsLocation(new google.maps.LatLng(coordinates.lat, coordinates.lng), polygon);
+
+            if (contains) {
+                const polygonName = polygon.name;
+				const urlParams = new URLSearchParams(window.location.search);
+                const id = urlParams.get('id');
+                createLead(coordinates, id, polygonName);
+				return;
+            }
+        }
+		createLead(coordinates, id, 'notcovered');
+    }
+}
+
+function getRedirectUrl(polygonName, leadId, lang) {
+    let baseUrl;
+    switch (polygonName) {
+        case 'haritna':
+            baseUrl = lang === 'ar' ? `https://www.blink.jo/haritnalead?id=${leadId}&lang=ar` : `https://www.blink.jo/haritnalead?id=${leadId}`;
+            break;
+        case 'skyfiber':
+            baseUrl = lang === 'ar' ? `https://www.blink.jo/skyfiberlead?id=${leadId}&lang=ar` : `https://www.blink.jo/skyfiberlead?id=${leadId}`;
+            break;
+        case 'Fiber':
+            baseUrl = lang === 'ar' ? `https://www.blink.jo/fiberlead?id=${leadId}&lang=ar` : `https://www.blink.jo/fiberlead?id=${leadId}`;
+            break;
+        case 'sk':
+            baseUrl = lang === 'ar' ? `https://www.blink.jo/sklead?id=${leadId}&lang=ar` : `https://www.blink.jo/sklead?id=${leadId}`;
+            break;
+        default:
+            baseUrl = lang === 'ar' ? `https://www.blink.jo/notcovered?id=${leadId}&lang=ar` : `https://www.blink.jo/notcovered?id=${leadId}`;
+            break;
+    }
+    return baseUrl;
+}
+
+function disableButton() {
+    const nextButton = document.getElementById('submit-button');
+    nextButton.disabled = true;
+    nextButton.style.backgroundColor = '#ccc';
+}
+    </script>
+</body>
+</html>
