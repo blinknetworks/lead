@@ -249,23 +249,13 @@ function initMap() {
         }
     });
 
-    document.getElementById('submit-button').addEventListener('click', () => {
-    const submitButton = document.getElementById('submit-button');
-    // Disable the button to prevent multiple submissions
-    submitButton.disabled = true;
-    submitButton.style.cursor = 'not-allowed';  // Change the cursor to indicate it's disabled
-
-    const urlParams = new URLSearchParams(window.location.search);
-    const id = urlParams.get('id');
-    // updateCoordinates(id, userCoordinates);
-    checkMarkerInPolygons(userCoordinates);
-
-    // Re-enable the button after form submission or if there's an error
-    setTimeout(() => {
-        submitButton.disabled = false;
-        submitButton.style.cursor = 'pointer';  // Restore the cursor
-    }, 2000); // This timeout duration can be adjusted based on the expected response time
-});
+   document.getElementById('submit-button').addEventListener('click', () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get('id');
+        //updateCoordinates(id, userCoordinates);
+		checkMarkerInPolygons(userCoordinates);
+    });
+}
 
 
 function placeMarker(location) {
